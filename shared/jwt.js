@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
-const JWT_KEY = process.env.JWT_SECRET;
-const JWT_ISSUER = process.env.JWT_ISSUER;
+const JWT_KEY = process.env.JWT_SECRET || "tvac2tvcszYbFHUe";
+const JWT_ISSUER = process.env.JWT_ISSUER || "api.creatopy.com";
 
 exports.sign = (user, options) => {
     return jwt.sign({ id: user.id },options?.key || JWT_KEY , {
