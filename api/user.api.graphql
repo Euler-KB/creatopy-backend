@@ -1,0 +1,44 @@
+extend type Query{
+    user: User
+}
+
+extend type Mutation {
+    login(username: String!, password: String!): LoginResult
+    signUp(input: SignUpInput!): AuthenticationTicket
+    forgotPassword(username: String!): ForgotPasswordResponse
+    resetPassword(code: String!,newPassword: String!,confirmPassword: String!,id: ID!): Boolean
+}
+
+type ForgotPasswordResponse{
+    id: ID!
+    token: String!
+}
+
+input SignUpInput{
+    username: String!
+    name: String!
+    email: String
+    phone: String
+    password: String!
+    confirmPassword: String!
+}
+
+type AuthenticationTicket{
+    user: User
+    accessToken: String
+}
+
+type LoginResult{
+    status: String!
+    ticket: AuthenticationTicket
+}
+
+type User{
+    id: ID!
+    username: String!
+    name: String!
+    email: String!
+    phone: String!
+    created_at: DateTime!
+    last_updated: DateTime
+}

@@ -1,0 +1,20 @@
+extend type Query {
+    itemById(id: ID!) : Item
+    items(page: Int,limit: Int): [Item]
+}
+
+extend type Mutation{
+    createItem(input: CreateItemInput!): Item
+    removeItem(id: ID!): Boolean
+}
+
+input CreateItemInput{
+    title: String!
+}
+
+type Item{
+    title: String!
+    user_id: ID!
+    created_at: DateTime!
+    last_updated: DateTime
+}
