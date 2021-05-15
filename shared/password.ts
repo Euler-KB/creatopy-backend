@@ -1,14 +1,14 @@
-const crypto = require("crypto");
+import crypto from 'crypto';
 
-exports.generateSalt = (size = 32) => {
+export const generateSalt = (size = 32) : string => {
     return crypto.randomBytes(size).toString('base64');
 }
 
-exports.hashPassword = (plainPassword, salt) => {
+export const hashPassword = (plainPassword: string, salt: string) : string => {
     const key = Buffer.from(salt, 'base64');
     return crypto.pbkdf2Sync(plainPassword,key,10000 ,key.length, 'SHA256' ).toString('base64');
 };
 
-exports.areEqual = (hash,salt,plainPassword) => {
+export const areEqual = (hash: string,salt: string,plainPassword: string) : boolean => {
     return exports.hashPassword(plainPassword,salt) === hash;
 };

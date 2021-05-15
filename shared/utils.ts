@@ -1,4 +1,4 @@
-exports.generatePasswordCode = (length = 4) => {
+export const generatePasswordCode = (length = 4) : string => {
 
     let parts = [];
     for(let i = 0 ; i < length ; i++){
