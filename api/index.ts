@@ -1,11 +1,10 @@
-const fs = require("fs");
-const path=  require("path");
-const _ = require("lodash");
-const GraphQLDateTime = require('graphql-type-datetime');
-
-const { applyMiddleware } = require("graphql-middleware");
-const { makeExecutableSchema } = require("graphql-tools");
-const { allow, shield } = require('graphql-shield');
+import fs from "fs";
+import path from "path";
+import _ from "lodash";
+import GraphQLDateTime from 'graphql-type-datetime';
+import { applyMiddleware } from "graphql-middleware";
+import { makeExecutableSchema } from "graphql-tools";
+import { allow, shield } from 'graphql-shield';
 
 /**
  * Load controller
@@ -13,14 +12,14 @@ const { allow, shield } = require('graphql-shield');
  * @returns {any}
  */
 const discoverSource = name => {
-    return require(`./${name}`);
+    return require(`./${name}`).default;
 };
 
 /**
  * Get schema
  * @returns {Promise<{}>}
  */
-exports.getSchema = () => {
+export const getSchema = () => {
 
     const sources = [
 

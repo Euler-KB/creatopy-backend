@@ -38,7 +38,7 @@ describe('JWT Utilities',function () {
     it('should sign jwt token',function () {
 
         const user = { id: 1 };
-        const token = jwt.sign(user,{ key: 'd49ZXAXkdPMSAEYn' , issuer: '*.creatopy' });
+        const token = jwt.signJwt(user,{ key: 'd49ZXAXkdPMSAEYn' , issuer: '*.creatopy' });
         expect(token).to.exist;
         console.log(token);
     });
@@ -47,18 +47,18 @@ describe('JWT Utilities',function () {
 
         const options = { key: 'd49ZXAXkdPMSAEYn' , issuer: '*.creatopy' };
         const user = { id: 1 };
-        const token = jwt.sign(user,options);
+        const token = jwt.signJwt(user,options);
         expect(token).to.exist;
 
         //  verify token
-        const payload = jwt.verify(token,options);
+        const payload = jwt.verifyJwt(token,options);
         expect(payload.id).to.equal(user.id);
     });
 
     it('should fail to verify invalid token',function () {
 
         const options = { key: 'd49ZXAXkdPMSAEYn' , issuer: '*.creatopy' };
-        const payload = jwt.verify("Bcsa33245=342535630635#",options);
+        const payload = jwt.verifyJwt("Bcsa33245=342535630635#",options);
         expect(payload).to.equal(undefined);
     });
 });
